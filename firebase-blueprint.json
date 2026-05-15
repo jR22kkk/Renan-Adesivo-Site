@@ -1,0 +1,106 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin user profile",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      }
+    },
+    "Product": {
+      "title": "Product",
+      "description": "A decal or sticker product available for sale",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the product" },
+        "description": { "type": "string", "description": "Detailed description" },
+        "price": { "type": "number", "description": "Price of the product" },
+        "category": { "type": "string", "description": "Category ID" },
+        "images": { "type": "array", "items": { "type": "string" }, "description": "List of image URLs" },
+        "featured": { "type": "boolean", "description": "Whether the product is featured on homepage" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "price", "category"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product category (e.g., Automotive, Custom, Wall)",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" }
+      },
+      "required": ["name", "slug"]
+    },
+    "AdminSettings": {
+      "title": "Admin Settings",
+      "description": "General settings for the site",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "whatsappNumber": { "type": "string" }
+      }
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "items": { "type": "array" },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": { "type": "string" },
+            "number": { "type": "string" },
+            "neighborhood": { "type": "string" },
+            "zipCode": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "HeroConfig": {
+      "title": "Hero Config",
+      "description": "Customization for the homepage hero section",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "imageUrl": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "products": {
+      "schema": "Product",
+      "description": "Collection of decals and stickers"
+    },
+    "categories": {
+      "schema": "Category",
+      "description": "Collection of product categories"
+    },
+    "settings": {
+      "schema": "AdminSettings",
+      "description": "Global configuration document"
+    },
+    "admins": {
+      "schema": "Admin",
+      "description": "Users who can manage the catalog"
+    },
+    "orders": {
+      "schema": "Order",
+      "description": "Customer purchase history"
+    },
+    "config": {
+      "schema": "HeroConfig",
+      "description": "UI configuration document"
+    }
+  }
+}
